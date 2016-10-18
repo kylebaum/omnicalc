@@ -132,8 +132,19 @@ class CalculationsController < ApplicationController
   end
     @standard_deviation = standard_deviation(@numbers)
 
+@sorted_numbers = @numbers.sort
+    @most_common_count = 0
 
-    @mode = "Replace this string with your answer."
+    @sorted_numbers.each do |num|
+      if @sorted_numbers.count(num) > @most_common_count
+
+        @most_common_count = @sorted_numbers.count(num)
+        @most_common = num
+      end
+    end
+
+      @mode = @most_common
+
 
     # ================================================================================
     # Your code goes above.
