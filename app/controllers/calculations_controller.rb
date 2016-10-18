@@ -16,7 +16,11 @@ class CalculationsController < ApplicationController
 
     @word_count = @text.scan(/(\w|-)+/).count
 
-    @occurrences = @text.scan(@special_word).count
+    mod_text = @text.downcase
+
+    mod_special_word = @special_word.downcase
+
+    @occurrences = mod_text.scan(mod_special_word).count
 
     # ================================================================================
     # Your code goes above.
