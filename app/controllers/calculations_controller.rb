@@ -97,9 +97,12 @@ class CalculationsController < ApplicationController
     @min = @numbers.min
     @range = @max-@min
 
-    @half = @count/2
-    @half_int = @half.to_i
-    @median = @numbers[@half_int]
+    def median(array)
+       array_sorted = array.sort
+       array_length = array_sorted.length
+       (array_sorted[(array_length - 1) / 2] + array_sorted[array_length / 2]) / 2.0
+     end
+     @median = median(@numbers)
 
 
     def sum(list_of_numbers)
