@@ -101,13 +101,37 @@ class CalculationsController < ApplicationController
     @half_int = @half.to_i
     @median = @numbers[@half_int]
 
-    @sum = @numbers.sum
+
+    def sum(list_of_numbers)
+         running_total = 0
+         list_of_numbers.each do |number|
+           running_total = running_total + number
+         end
+         return running_total
+       end
+
+       @sum = sum(@numbers)
 
     @mean = (@numbers.sum)/@count
 
-    @variance = "Replace this string with your answer."
 
-    @standard_deviation = "Replace this string with your answer."
+  def variance(list_of_numbers)
+       sq_diff = 0
+       running_total = 0
+       list_of_numbers.each do |number|
+         sq_diff = (number - (list_of_numbers.sum / list_of_numbers.count))**2
+         running_total = running_total + sq_diff
+       end
+       return running_total / list_of_numbers.count
+     end
+     @variance = variance(@numbers)
+
+  def standard_deviation(list_of_numbers)
+    variance = variance(@numbers)
+    return Math.sqrt(variance)
+  end
+    @standard_deviation = standard_deviation(@numbers)
+
 
     @mode = "Replace this string with your answer."
 
